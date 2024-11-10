@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Heart Attack Risk Prediction</h2>
+<form method="post">
+    <div class="mb-3">
+        <input type="number" class="form-control" name="age" placeholder="Age" required>
+    </div>
+    <div class="mb-3">
+        <input type="number" class="form-control" name="cholesterol" placeholder="Cholesterol Level (mg/dL)" required>
+    </div>
+    <div class="mb-3">
+        <input type="number" class="form-control" name="bp" placeholder="Blood Pressure (mmHg)" required>
+    </div>
+    <div class="mb-3">
+        <label for="smoking" class="form-label">Do you smoke?</label>
+        <select class="form-select" name="smoking" required>
+            <option value="" disabled selected>Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="activity" class="form-label">Physical Activity Level</label>
+        <select class="form-select" name="activity" required>
+            <option value="" disabled selected>Select</option>
+            <option value="sedentary">Sedentary (little or no exercise)</option>
+            <option value="moderate">Moderately active (exercise occasionally)</option>
+            <option value="active">Active (exercise regularly)</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="diabetes" class="form-label">Do you have diabetes?</label>
+        <select class="form-select" name="diabetes" required>
+            <option value="" disabled selected>Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="family_history" class="form-label">Family History of Heart Disease?</label>
+        <select class="form-select" name="family_history" required>
+            <option value="" disabled selected>Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Predict</button>
+</form>
+{% endblock %}
+
