@@ -1,7 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Your Heart Attack Risk</h2>
-<p>Your predicted risk of heart attack is: <strong>{{ risk }}</strong></p>
-<a href="/home" class="btn btn-secondary">Back</a>
-{% endblock %}
+<div class="container mt-5">
+    <h1 class="text-center">Heart Disease Risk Assessment</h1>
+    
+    <div class="alert alert-primary text-center mt-4">
+        <h2>Your Predicted Risk: <strong>{{ risk }}</strong></h2>
+    </div>
+    
+    <h3 class="mt-5">Summary of Your Answers:</h3>
+    <ul class="list-group">
+        {% for key, value in summary.items() %}
+        <li class="list-group-item">
+            <strong>{{ key }}:</strong> {{ value }}
+        </li>
+        {% endfor %}
+    </ul>
 
+    {% if advice %}
+    <h3 class="mt-5">Advice for You:</h3>
+    <ul class="list-group">
+        {% for tip in advice %}
+        <li class="list-group-item">{{ tip }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="{{ url_for('start_question') }}" class="btn btn-primary">Retake Assessment</a>
+    </div>
+</div>
+{% endblock %}

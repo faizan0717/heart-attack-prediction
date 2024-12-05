@@ -1,4 +1,7 @@
-{% extends 'base.html' %} {% block content %}
+
+{% extends 'base.html' %}
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,16 +46,16 @@
       .shape:first-child {
         background: linear-gradient(#1845ad, #23a2f6);
         left: -80px;
-        top: -80px;
+        top: 400px;
       }
       .shape:last-child {
         background: linear-gradient(to right, #ff512f, #f09819);
         right: -30px;
-        bottom: -80px;
+        bottom: 400px;
       }
       form {
-        height: 520px;
-        width: 400px;
+        height: 750px;
+        width: 600px;
         background-color: rgba(255, 255, 255, 0.13);
         position: absolute;
         transform: translate(-50%, -50%);
@@ -131,42 +134,56 @@
       .social i {
         margin-right: 4px;
       }
+
+      .progress-container {
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        overflow: hidden;
+        margin: 20px 0;
+      }
+      .progress-bar {
+        height: 30px;
+        width: 0%;
+        background-color: #23a2f6;
+        border-radius: 5px;
+        text-align: center;
+        color: #fff;
+        line-height: 20px;
+        font-size: 12px;
+        transition: width 0.3s ease-in-out;
+      }
     </style>
   </head>
   <body>
-    <div class="background">
-      <div class="shape"></div>
-      <div class="shape"></div>
+    
+    <form method="post">
+        <img src="{{ url_for('static', filename='images/doctor.png') }}" alt="Example Image" style="width:300px;height:auto;display: block;margin: 0 auto;">
+        <div class="progress-container">
+            <div class="progress-bar" style="width: {{ progress_percentage }}%;">
+              {{ progress_percentage }}%
+            </div>
+          </div>
+        <div class="mb-3" style="margin-top: 30px;">
+        <h2>{{ question }}</h2>
     </div>
-
-
-    <form method="post" action="/login">
-        <h3>Login Here</h3>
-
-      
-      <div class="mb-3">
-        <label for="username">Username</label>
-        <input
-          type="text"
-          class="form-control"
-          name="username"
-          placeholder="Username"
-          required
-        />
-      </div>
-      <div class="mb-3">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          name="password"
-          placeholder="Password"
-          required
-        />
-      </div>
-      <button type="submit" class="btn btn-primary">Login</button>
-      <BR></BR>
-      <p>Don't have an account? <a href="/signup">Sign up</a></p>
+        <div class="mb-3"></div>
+        {% if field_type == "number" %}
+            
+                <input type="number" class="form-control" name="{{ field_name }}" required>
+            
+        {% elif field_type == "select" %}
+            
+                <select class="form-select" name="{{ field_name }}" required>
+                    <option value="" disabled selected>Select</option>
+                    {% for option in options %}
+                        <option value="{{ option }}">{{ option.capitalize() }}</option>
+                    {% endfor %}
+                </select>
+            
+        {% endif %}
+        <button type="submit" class="btn btn-primary">Next</button>
+    </div>
     </form>
     
   </body>
