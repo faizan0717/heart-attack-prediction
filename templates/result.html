@@ -4,7 +4,7 @@
     <h1 class="text-center">Heart Disease Risk Assessment</h1>
     
     <div class="alert alert-primary text-center mt-4">
-        <h2>Your Predicted Risk: <strong>{{ risk }}</strong></h2>
+        <h2>Your Predicted Risk: <strong>{{ risk }} with accuracy of {{ accuracy }}%</strong></h2>
     </div>
     
     <h3 class="mt-5">Summary of Your Answers:</h3>
@@ -24,6 +24,34 @@
         {% endfor %}
     </ul>
     {% endif %}
+
+    <h3 class="mt-5">Model Performance Report:</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>Value (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Accuracy</td>
+                <td>{{ accuracy }}</td>
+            </tr>
+            <tr>
+                <td>Precision</td>
+                <td>{{ precision }}</td>
+            </tr>
+            <tr>
+                <td>Recall</td>
+                <td>{{ recall }}</td>
+            </tr>
+            <tr>
+                <td>F1 Score</td>
+                <td>{{ f1_score }}</td>
+            </tr>
+        </tbody>
+    </table>
 
     <div class="text-center mt-4">
         <a href="{{ url_for('start_question') }}" class="btn btn-primary">Retake Assessment</a>
